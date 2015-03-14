@@ -1,6 +1,6 @@
-package io.fernandonogueira.apiblueprint.annotations;
+package japiblueprint.annotations;
 
-import io.fernandonogueira.apiblueprint.enums.ApiRequestMethod;
+import japiblueprint.enums.ApiRequestMethod;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

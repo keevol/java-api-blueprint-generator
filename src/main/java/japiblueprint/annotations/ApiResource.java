@@ -1,4 +1,4 @@
-package io.fernandonogueira.apiblueprint.annotations;
+package japiblueprint.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

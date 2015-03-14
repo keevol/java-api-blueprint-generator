@@ -1,9 +1,9 @@
-package io.fernandonogueira.apiblueprint.parser;
+package japiblueprint.parser;
 
-import io.fernandonogueira.apiblueprint.domain.ControllerDescriptor;
-import io.fernandonogueira.apiblueprint.domain.FieldDescriptor;
-import io.fernandonogueira.apiblueprint.domain.MethodDescriptor;
-import io.fernandonogueira.apiblueprint.domain.PojoDescriptor;
+import japiblueprint.domain.ControllerDescriptor;
+import japiblueprint.domain.FieldDescriptor;
+import japiblueprint.domain.MethodDescriptor;
+import japiblueprint.domain.PojoDescriptor;
 
 import java.util.List;
 import java.util.Map;

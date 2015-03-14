@@ -1,4 +1,4 @@
-package io.fernandonogueira.apiblueprint.domain;
+package japiblueprint.domain;
 
 /**
  * @author Fernando Nogueira

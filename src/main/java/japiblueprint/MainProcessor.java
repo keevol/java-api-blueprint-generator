@@ -1,14 +1,14 @@
-package io.fernandonogueira.apiblueprint;
+package japiblueprint;
 
-import io.fernandonogueira.apiblueprint.annotations.ApiController;
-import io.fernandonogueira.apiblueprint.annotations.ApiRequest;
-import io.fernandonogueira.apiblueprint.annotations.ApiResource;
-import io.fernandonogueira.apiblueprint.annotations.ApiResourceAttr;
-import io.fernandonogueira.apiblueprint.domain.ControllerDescriptor;
-import io.fernandonogueira.apiblueprint.domain.FieldDescriptor;
-import io.fernandonogueira.apiblueprint.domain.MethodDescriptor;
-import io.fernandonogueira.apiblueprint.domain.PojoDescriptor;
-import io.fernandonogueira.apiblueprint.parser.DescriptorParser;
+import japiblueprint.annotations.ApiController;
+import japiblueprint.annotations.ApiRequest;
+import japiblueprint.annotations.ApiResource;
+import japiblueprint.annotations.ApiResourceAttr;
+import japiblueprint.domain.ControllerDescriptor;
+import japiblueprint.domain.FieldDescriptor;
+import japiblueprint.domain.MethodDescriptor;
+import japiblueprint.domain.PojoDescriptor;
+import japiblueprint.parser.DescriptorParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,10 +27,10 @@ import java.util.*;
  */
 @SupportedAnnotationTypes(
         {
-                "io.fernandonogueira.apiblueprint.annotations.ApiController",
-                "io.fernandonogueira.apiblueprint.annotations.ApiRequest",
-                "io.fernandonogueira.apiblueprint.annotations.ApiResource",
-                "io.fernandonogueira.apiblueprint.annotations.ApiResourceAttr"
+                "japiblueprint.annotations.ApiController",
+                "japiblueprint.annotations.ApiRequest",
+                "japiblueprint.annotations.ApiResource",
+                "japiblueprint.annotations.ApiResourceAttr"
         }
 )
 @SupportedSourceVersion(SourceVersion.RELEASE_7)

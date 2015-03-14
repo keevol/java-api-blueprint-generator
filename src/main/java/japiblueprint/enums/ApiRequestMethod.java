@@ -1,4 +1,4 @@
-package io.fernandonogueira.apiblueprint.enums;
+package japiblueprint.enums;
 
 /**
  * @author Fernando Nogueira

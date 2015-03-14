@@ -1,4 +1,4 @@
-package io.fernandonogueira.apiblueprint.annotations;
+package japiblueprint.annotations;
 
 /**
  * @author Fernando Nogueira
