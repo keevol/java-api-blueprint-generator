@@ -12,13 +12,14 @@ import japiblueprint.parser.DescriptorParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.processing.AbstractProcessor;
-import javax.annotation.processing.RoundEnvironment;
-import javax.annotation.processing.SupportedAnnotationTypes;
-import javax.annotation.processing.SupportedSourceVersion;
+import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -34,6 +35,7 @@ import java.util.*;
         }
 )
 @SupportedSourceVersion(SourceVersion.RELEASE_7)
+@SupportedOptions("apiOutput")
 public class MainProcessor extends AbstractProcessor {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MainProcessor.class);
@@ -47,7 +49,7 @@ public class MainProcessor extends AbstractProcessor {
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
 
-        LOGGER.info("Starting api-blueprint annotation processor...");
+        LOGGER.info("Starting api-blueprint annotation processor round...");
 
         if (annotations == null) {
             return false;
@@ -151,16 +153,58 @@ public class MainProcessor extends AbstractProcessor {
                 }
 
                 verifyOrphanElements();
-
-                DescriptorParser descriptorParser = new DescriptorParser();
-                LOGGER.info(descriptorParser.parse(classPojoDescriptorMap, classControllerDescriptorMap));
-
             }
         }
 
-        LOGGER.info("api-blueprint annotation processing finished.");
+        if (roundEnv.processingOver()) {
+            generateApiFile();
+        }
+
+        LOGGER.info("api-blueprint annotation processing round finished.");
 
         return false;
+    }
+
+    private void generateApiFile() {
+        LOGGER.info("Stating to generate API...");
+        String destinationDir = detectDestinationDir();
+
+        File file = new File(destinationDir);
+        if (!file.exists()) {
+            boolean created = file.mkdirs();
+            if (!created) {
+                LOGGER.error("It was not possible to create API DOC output DIR: {}", destinationDir);
+                return;
+            }
+        }
+        DescriptorParser descriptorParser = new DescriptorParser();
+        String generatedAPIDoc = descriptorParser.parse(classPojoDescriptorMap, classControllerDescriptorMap);
+        try {
+            File apiFile = new File(destinationDir + "/api.apib");
+            if (apiFile.exists()) {
+                boolean deleteSuccessful = apiFile.delete();
+                if (!deleteSuccessful) {
+                    LOGGER.warn("Error trying to delete previous api file");
+                }
+            }
+            FileWriter fileWriter = new FileWriter(apiFile);
+            BufferedWriter buffered = new BufferedWriter(fileWriter);
+            buffered.write(generatedAPIDoc);
+            buffered.close();
+        } catch (IOException e) {
+            LOGGER.error("Error creating FileWriter or writing API file", e);
+        }
+    }
+
+    private String detectDestinationDir() {
+
+        Map<String, String> options = processingEnv.getOptions();
+
+        if (options.containsKey("apiOutput")) {
+            return options.get("apiOutput");
+        } else {
+            return System.getProperty("user.dir") + "/apiDoc";
+        }
     }
 
     private void verifyOrphanElements() {
