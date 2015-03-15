@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <name>Java API Blueprint Generator</name>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>io.fernandonogueira</groupId>
+    <groupId>japiblueprint</groupId>
     <artifactId>api-blueprint-generator</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
@@ -20,13 +20,15 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>3.2</version>
                 <configuration>
                     <source>1.7</source>
                     <target>1.7</target>
                     <encoding>UTF-8</encoding>
-                    <!-- Disable annotation processing for ourselves. -->
-                    <compilerArgument>-proc:none</compilerArgument>
+                    <compilerArgs>
+                        <!-- Disable annotation processing for ourselves. -->
+                        <arg>-proc:none</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
             <plugin>
