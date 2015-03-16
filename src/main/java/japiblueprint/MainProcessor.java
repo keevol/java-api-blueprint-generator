@@ -34,7 +34,7 @@ import java.util.*;
                 "japiblueprint.annotations.ApiResourceAttr"
         }
 )
-@SupportedSourceVersion(SourceVersion.RELEASE_8)
+@SupportedSourceVersion(SourceVersion.RELEASE_7)
 @SupportedOptions("apiOutput")
 public class MainProcessor extends AbstractProcessor {
 
