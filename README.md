@@ -45,3 +45,40 @@ public class UserController {
 >
 
 ![](https://s3.amazonaws.com/publicimgs/java-api-blueprints-result.png)
+
+# Add it to your project
+
+>pom.xml
+
+```xml
+...
+
+    <dependencies>
+        <dependency>
+            <groupId>japiblueprint</groupId>
+            <artifactId>api-blueprint-generator</artifactId>
+            <version>1.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+...
+
+        <build>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.2</version>
+                    <configuration>
+                        <source>1.7</source>
+                        <target>1.7</target>
+                        <encoding>UTF-8</encoding>
+                        <debug>true</debug>
+                        <compilerArgs>
+                            <arg>-AapiOutput=${basedir}/apiDoc</arg>
+                        </compilerArgs>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </build>
+...
+
+```
